@@ -7,7 +7,7 @@
 AutoItSetOption("MustDeclareVars", 1)
 
 Global Const $APP_FULLNAME = "Apps in Tray"
-Global Const $APP_VERSION = "v0.1.0"
+Global Const $APP_VERSION = "v0.1.1"
 Global Const $APP_COPYRIGHT = "Copyright (c) 2021 CataeroGong"
 Global Const $APP_URL = "github.com/cataerogong/AppTray"
 Global Const $APP_DESC = "Auto run apps and hide windows, control with one tray icon."
@@ -186,7 +186,7 @@ Func Start($id)
 		Else
 			$g_a_PID[$id] = Run($g_a_CmdLine[$id], $g_a_WorkDir[$id])
 		EndIf
-		Sleep(100)
+		Sleep(1000)
 		$g_a_HWND[$id] = ProcessGetWinHandle($g_a_PID[$id])
 		If $g_a_HWND[$id] Then
 			If $g_a_Console[$id] = 1 Then

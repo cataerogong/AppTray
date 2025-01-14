@@ -7,8 +7,8 @@
 AutoItSetOption("MustDeclareVars", 1)
 
 Global Const $APP_FULLNAME = "Apps in Tray"
-Global Const $APP_VERSION = "v0.1.1"
-Global Const $APP_COPYRIGHT = "Copyright (c) 2021 CataeroGong"
+Global Const $APP_VERSION = "v0.2.0"
+Global Const $APP_COPYRIGHT = "Copyright (c) 2021-2025 CataeroGong"
 Global Const $APP_URL = "github.com/cataerogong/AppTray"
 Global Const $APP_DESC = "Auto run apps and hide windows, control with one tray icon."
 Global Const $APPNAME = StringRegExpReplace(@ScriptName, "\.[^\.]+$", "")
@@ -181,10 +181,14 @@ EndFunc
 
 Func Start($id)
 	If $g_a_HWND[$id] = 0 Then
+		Local $Show_Flag = @SW_SHOW
+		If $g_a_HideWin[$id] = -1 Then
+			$Show_Flag = @SW_HIDE
+		EndIf
 		If $g_a_Console[$id] = 1 Then
-			$g_a_PID[$id] = Run(@ComSpec & " /c " & $g_a_CmdLine[$id], $g_a_WorkDir[$id])
+			$g_a_PID[$id] = Run(@ComSpec & " /c " & $g_a_CmdLine[$id], $g_a_WorkDir[$id], $Show_Flag)
 		Else
-			$g_a_PID[$id] = Run($g_a_CmdLine[$id], $g_a_WorkDir[$id])
+			$g_a_PID[$id] = Run($g_a_CmdLine[$id], $g_a_WorkDir[$id], $Show_Flag)
 		EndIf
 		Sleep(1000)
 		$g_a_HWND[$id] = ProcessGetWinHandle($g_a_PID[$id])

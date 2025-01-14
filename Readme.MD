@@ -19,8 +19,11 @@
 ; AutoRun: 1|0 (Optional) [default: 1]
 ;          Run CmdLine automatically.
 ;AutoRun=1
-; HideWin: 1|0 (Optional) [default: 1]
+; HideWin: 1|0|-1 (Optional) [default: 1]
 ;          Hide the window.
+;          0: Show (Start the program normally)
+;          1: Hide (Start the program normally, then hide the window)
+;          -1: Hide immediately (Start the program in hidden mode)
 ;HideWin=1
 
 [Hello World]
